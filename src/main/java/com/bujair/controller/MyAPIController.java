@@ -3,11 +3,18 @@
  */
 package com.bujair.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bujair.service.UserService;
 import com.bujair.vo.BaseVo;
+import com.bujair.vo.UserVo;
 
 /**
  * @author bujair
@@ -16,13 +23,21 @@ import com.bujair.vo.BaseVo;
 @RestController
 public class MyAPIController {
 	
-	@RequestMapping("/getUsers")
-	public BaseVo getUsers() {
-		return null;
+	@Autowired
+	UserService userService;
+	
+	@GetMapping("/getUsers")
+	public BaseVo getUsers(){
+		return userService.getUser();
 	}
 
-	@RequestMapping("/getUser")
-	public BaseVo getProduct(@RequestParam(value = "userID", required = true) String userID) {
-		return null;
+	@GetMapping(path="/getUser/{id}")
+	public BaseVo getProduct(@PathVariable("id") String id) {
+		return userService.getUser(Long.parseLong(id));
 	}
+	
+	@PostMapping("/user")
+    public UserVo createNote(@Valid @RequestBody UserVo user) {
+        return userService.save(user);
+    }
 }

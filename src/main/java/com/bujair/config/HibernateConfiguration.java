@@ -1,6 +1,6 @@
 /**
  * 
- */
+ *//*
 package com.bujair.config;
 
 import java.util.Properties;
@@ -15,10 +15,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/**
+*//**
  * @author bujair
  *
- */
+ *//*
 @Configuration
 @EnableTransactionManagement
 public class HibernateConfiguration {
@@ -79,3 +79,4 @@ public class HibernateConfiguration {
 	}	
 
 }
+*/
