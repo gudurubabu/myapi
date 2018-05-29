@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.bujair.model.UserInfo;
 
 /**
- * @author dguduru
+ * @author Bujair
  *
  */
-@Repository(value="userRepository")
+@Repository
 public interface UserRepository extends JpaRepository<UserInfo, Long> {
 
 }

@@ -4,7 +4,7 @@
 package com.bujair.exception;
 
 /**
- * @author bujair
+ * @author Bujair
  *
  */
 public class NoDataFoundException extends RuntimeException{

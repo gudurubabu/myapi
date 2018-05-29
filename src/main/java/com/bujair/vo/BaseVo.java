@@ -4,7 +4,7 @@
 package com.bujair.vo;
 
 /**
- * @author bujair
+ * @author Bujair
  *
  */
 public class BaseVo {

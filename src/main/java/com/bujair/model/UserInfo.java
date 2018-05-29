@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 /**
- * @author bujair
+ * @author Bujair
  *
  */
 @Entity

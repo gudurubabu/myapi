@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author bujair
+ * @author Bujair
  *
  */
 public class UsersVo extends BaseVo{

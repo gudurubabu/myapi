@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.bujair.dao.UserRepository;
 
 /**
- * @author bujair
+ * @author Bujair
  *
  */
 @Configuration

@@ -12,7 +12,7 @@ import com.bujair.exception.NoDataFoundException;
 import com.bujair.vo.BaseVo;
 
 /**
- * @author bujair
+ * @author Bujair
  *
  */
 @ControllerAdvice(basePackages = "com.bujair")

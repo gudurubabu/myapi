@@ -4,7 +4,7 @@
 package com.bujair.service;
 
 /**
- * @author bujair
+ * @author Bujair
  *
  */
 public class MyAPIService {
