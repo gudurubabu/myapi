@@ -1,4 +1,4 @@
-package com.bujair.demo;
+package com.bujair.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,9 +15,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("com.bujair")
 @EnableTransactionManagement
 @EnableJpaAuditing
-public class DemoApplication {
+public class MyAPIApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(MyAPIApplication.class, args);
 	}
 }

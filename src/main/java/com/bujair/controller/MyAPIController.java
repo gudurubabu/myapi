@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,11 @@ public class MyAPIController {
 	@GetMapping(path="/getUser/{id}")
 	public BaseVo getProduct(@PathVariable("id") String id) {
 		return userService.getUser(Long.parseLong(id));
+	}
+	
+	@DeleteMapping(path="/getUser/{id}")
+	public BaseVo deleteUser(@PathVariable("id") String id) {
+		return userService.deleteUser(Long.parseLong(id));
 	}
 	
 	@PostMapping("/user")
