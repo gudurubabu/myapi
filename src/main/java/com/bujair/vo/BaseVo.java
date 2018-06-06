@@ -13,6 +13,7 @@ public class BaseVo {
 	private String message;
 	private String status;
 	private String errorCode;
+	private Object data;
 	
 	
 	public String getMessage() {
@@ -32,6 +33,12 @@ public class BaseVo {
 	}
 	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
+	}
+	public Object getData() {
+		return data;
+	}
+	public void setData(Object data) {
+		this.data = data;
 	}
 	
 	
