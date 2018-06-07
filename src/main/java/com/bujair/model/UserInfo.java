@@ -10,7 +10,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -64,14 +64,16 @@ public class UserInfo  implements Serializable{
     @LastModifiedDate
     private Date updatedAt;
 
+    @NotBlank(message=" First name is mandatory")
     private String fname;
     private String lname;
     private String dob;
+    @Pattern(regexp ="^M$|^m$|^Male$|^male$|^F$|^f$|^Female$|^female$*",message="Gender not allowed")
     private String gendar;
     private String phone;
     private String email;
     
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     //@Fetch(value = FetchMode.SUBSELECT)
     @JoinColumn(name = "addressID")
     private Address primaryAddress;

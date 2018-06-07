@@ -73,7 +73,7 @@ public class Address implements Serializable{
 		return country;
 	}
 	public void setCountry(String country) {
-		this.country = country==null?"India":country;
+		this.country = (country==null?"India":country);
 	}
 	
 	

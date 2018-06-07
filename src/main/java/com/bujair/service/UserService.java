@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.bujair.dao.UserRepository;
 import com.bujair.exception.NoDataFoundException;
 import com.bujair.model.UserInfo;
+import com.bujair.util.PasswordUtil;
 
 /**
  * @author Bujair
@@ -52,6 +53,8 @@ public class UserService extends MyAPIService {
 	 * @return
 	 */
 	public UserInfo save(UserInfo user) {
+		if(null != user && null != user.getPassword())
+			user.setPassword(PasswordUtil.generateSecurePassword(user.getPassword(), SALTKEY));
 		return userRepository.save(user);
 	}
 
