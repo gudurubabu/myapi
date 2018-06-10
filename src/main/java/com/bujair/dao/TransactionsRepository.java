@@ -13,6 +13,6 @@ import com.bujair.model.TransactionInfo;
  *
  */
 @Repository
-public interface TransactionRepository extends JpaRepository<TransactionInfo, Long> {
+public interface TransactionsRepository extends JpaRepository<TransactionInfo, Long> {
 
 }

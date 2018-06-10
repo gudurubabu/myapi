@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bujair.dao.TransactionRepository;
+import com.bujair.dao.TransactionsRepository;
 import com.bujair.exception.NoDataFoundException;
 import com.bujair.model.TransactionInfo;
 
@@ -19,8 +19,8 @@ import com.bujair.model.TransactionInfo;
 @Service
 public class TransactionService extends MyAPIService {
 
-	@Autowired(required = false)
-	TransactionRepository transactioRepository;
+	@Autowired
+	TransactionsRepository transactioRepository;
 
 	/**
 	 * Getting Transaction Data based on the ID provided by Transaction

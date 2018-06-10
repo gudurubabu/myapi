@@ -23,6 +23,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.bujair.dao.TransactionsRepository;
 import com.bujair.dao.UserRepository;
 
 /**
@@ -30,61 +31,62 @@ import com.bujair.dao.UserRepository;
  *
  */
 @Configuration
-@EnableJpaRepositories(basePackages = "com.bujair.dao", includeFilters = @ComponentScan.Filter(value = { UserRepository.class }, type = FilterType.ASSIGNABLE_TYPE))
+@EnableJpaRepositories(basePackages = "com.bujair.dao", includeFilters = @ComponentScan.Filter(value = {
+		UserRepository.class, TransactionsRepository.class }, type = FilterType.ASSIGNABLE_TYPE))
 @EnableTransactionManagement
 public class JPAConfiguration {
-	
+
 	@Value("${db.driver}")
 	private String DRIVER;
- 
+
 	@Value("${db.password}")
 	private String PASSWORD;
- 
+
 	@Value("${db.url}")
 	private String URL;
- 
+
 	@Value("${db.username}")
 	private String USERNAME;
 
 	@Bean
-    public DataSource dataSource() throws SQLException {
+	public DataSource dataSource() throws SQLException {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(DRIVER);
 		dataSource.setUrl(URL);
 		dataSource.setUsername(USERNAME);
 		dataSource.setPassword(PASSWORD);
 		return dataSource;
-    }
+	}
 
-    @Bean
-    public EntityManagerFactory entityManagerFactory() throws SQLException {
+	@Bean
+	public EntityManagerFactory entityManagerFactory() throws SQLException {
 
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setGenerateDdl(true);
 
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.bujair.model");
-        factory.setDataSource(dataSource());
-        factory.afterPropertiesSet();
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setPackagesToScan("com.bujair.model");
+		factory.setDataSource(dataSource());
+		factory.afterPropertiesSet();
 
-        return factory.getObject();
-    }
+		return factory.getObject();
+	}
 
-    @Bean
-    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
-        return entityManagerFactory.createEntityManager();
-    }
+	@Bean
+	public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
+		return entityManagerFactory.createEntityManager();
+	}
 
-    @Bean
-    public PlatformTransactionManager transactionManager() throws SQLException {
-        JpaTransactionManager txManager = new JpaTransactionManager();
-        txManager.setEntityManagerFactory(entityManagerFactory());
-        return txManager;
-    }
+	@Bean
+	public PlatformTransactionManager transactionManager() throws SQLException {
+		JpaTransactionManager txManager = new JpaTransactionManager();
+		txManager.setEntityManagerFactory(entityManagerFactory());
+		return txManager;
+	}
 
-    @Bean
-    public HibernateExceptionTranslator hibernateExceptionTranslator() {
-        return new HibernateExceptionTranslator();
-    }
+	@Bean
+	public HibernateExceptionTranslator hibernateExceptionTranslator() {
+		return new HibernateExceptionTranslator();
+	}
 }
