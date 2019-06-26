@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bujair.model.TransactionInfo;
-import com.bujair.service.TransactionService;
+import com.bujair.model.CashInfo;
+import com.bujair.service.CashService;
 import com.bujair.vo.BaseVo;
 
 /**
@@ -24,19 +24,19 @@ import com.bujair.vo.BaseVo;
  *
  */
 @RestController
-public class TransactionController extends MyAPIController{
+public class CashController extends MyAPIController{
 	
 	@Autowired
-	TransactionService transactionService;
+	CashService cashService;
 	
-	@GetMapping("/transaction")
+	@GetMapping("/cash")
 	/**
 	 * Getting all the Users 
 	 * @return
 	 */
-	public BaseVo getTransaction(){
-		logger.debug("GET Transactions");
-		List<TransactionInfo> data=transactionService.getTransaction();
+	public BaseVo getCash(){
+		logger.debug("GET Cashs");
+		List<CashInfo> data=cashService.getCash();
 		return prepareResponse(data);
 	}
 	
@@ -45,33 +45,33 @@ public class TransactionController extends MyAPIController{
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(path="/transaction/{id}")
-	public BaseVo getTransaction(@PathVariable("id") String id) {
-		TransactionInfo data=transactionService.getTransaction(Long.parseLong(id));
+	@GetMapping(path="/cash/{id}")
+	public BaseVo getCash(@PathVariable("id") String id) {
+		CashInfo data=cashService.getCash(Long.parseLong(id));
 		return prepareResponse(data);
 	}
 	
 	/**
-	 * Deleting transaction 
+	 * Deleting cash 
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(path="/transaction/{id}")
-	public BaseVo deleteTransaction(@PathVariable("id") String id) {
-		transactionService.deleteTransaction(Long.parseLong(id)); 
+	@DeleteMapping(path="/cash/{id}")
+	public BaseVo deleteCash(@PathVariable("id") String id) {
+		cashService.deleteCash(Long.parseLong(id)); 
 		return prepareResponse();
 	}
 	
 	/**
 	 * Creating or Updating the User
 	 * 
-	 * @param transaction
+	 * @param cash
 	 * @return
 	 */
-	@PostMapping("/transaction")
-    public BaseVo saveTransaction(@Valid @RequestBody TransactionInfo transaction) {
-		logger.debug("Transaction is -->",transaction);
-		TransactionInfo data=transactionService.save(transaction);
+	@PostMapping("/cash")
+    public BaseVo saveCash(@Valid @RequestBody CashInfo cash) {
+		logger.debug("Cash is -->",cash);
+		CashInfo data=cashService.save(cash);
 		return prepareResponse(data);
     }
 

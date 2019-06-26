@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bujair.model.TransactionInfo;
-import com.bujair.service.TransactionService;
+import com.bujair.model.CardInfo;
+import com.bujair.service.CardService;
 import com.bujair.vo.BaseVo;
 
 /**
@@ -24,19 +24,19 @@ import com.bujair.vo.BaseVo;
  *
  */
 @RestController
-public class TransactionController extends MyAPIController{
+public class CardController extends MyAPIController{
 	
 	@Autowired
-	TransactionService transactionService;
+	CardService cardService;
 	
-	@GetMapping("/transaction")
+	@GetMapping("/card")
 	/**
 	 * Getting all the Users 
 	 * @return
 	 */
-	public BaseVo getTransaction(){
-		logger.debug("GET Transactions");
-		List<TransactionInfo> data=transactionService.getTransaction();
+	public BaseVo getCard(){
+		logger.debug("GET Cards");
+		List<CardInfo> data=cardService.getCard();
 		return prepareResponse(data);
 	}
 	
@@ -45,33 +45,33 @@ public class TransactionController extends MyAPIController{
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(path="/transaction/{id}")
-	public BaseVo getTransaction(@PathVariable("id") String id) {
-		TransactionInfo data=transactionService.getTransaction(Long.parseLong(id));
+	@GetMapping(path="/card/{id}")
+	public BaseVo getCard(@PathVariable("id") String id) {
+		CardInfo data=cardService.getCard(Long.parseLong(id));
 		return prepareResponse(data);
 	}
 	
 	/**
-	 * Deleting transaction 
+	 * Deleting card 
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping(path="/transaction/{id}")
-	public BaseVo deleteTransaction(@PathVariable("id") String id) {
-		transactionService.deleteTransaction(Long.parseLong(id)); 
+	@DeleteMapping(path="/card/{id}")
+	public BaseVo deleteCard(@PathVariable("id") String id) {
+		cardService.deleteCard(Long.parseLong(id)); 
 		return prepareResponse();
 	}
 	
 	/**
 	 * Creating or Updating the User
 	 * 
-	 * @param transaction
+	 * @param card
 	 * @return
 	 */
-	@PostMapping("/transaction")
-    public BaseVo saveTransaction(@Valid @RequestBody TransactionInfo transaction) {
-		logger.debug("Transaction is -->",transaction);
-		TransactionInfo data=transactionService.save(transaction);
+	@PostMapping("/card")
+    public BaseVo saveCard(@Valid @RequestBody CardInfo card) {
+		logger.debug("Card is -->",card);
+		CardInfo data=cardService.save(card);
 		return prepareResponse(data);
     }
 

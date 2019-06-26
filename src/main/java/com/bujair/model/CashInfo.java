@@ -31,11 +31,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  *
  */
 @Entity
-@Table(name = "TRANS_INFO")
+@Table(name = "CASH_INFO")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)
-public class TransactionInfo implements Serializable{
+public class CashInfo implements Serializable{
 
 		/**
 		 * 
@@ -43,9 +43,9 @@ public class TransactionInfo implements Serializable{
 		private static final long serialVersionUID = 1L;
 		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long transactionID;
+	    private Long cashID;
 		
-		@NotNull(message="Transaction Amount should be valid")
+		@NotNull(message="Amount should be valid")
 		private double amount;
 		
 		@NotNull(message="Transaction date should be valid")
@@ -79,12 +79,15 @@ public class TransactionInfo implements Serializable{
 		public double getAmount() {
 			return amount;
 		}
-		public Long getTransactionID() {
-			return transactionID;
+		
+		public Long getCashID() {
+			return cashID;
 		}
-		public void setTransactionID(Long transactionID) {
-			this.transactionID = transactionID;
+
+		public void setCashID(Long cashID) {
+			this.cashID = cashID;
 		}
+
 		/*public UserInfo getUserID() {
 			return userID;
 		}
